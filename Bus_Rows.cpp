@@ -8,50 +8,6 @@ using namespace std;
 *                                                          *
 *************************************************************/
 
-#define ll long long
-#define hea cout << "YES\n";
-#define na cout << "NO\n";
-#define nl cout << '\n';
-
-int main() 
-{
-    ios::sync_with_stdio(0), cin.tie(0);
-
-    // sieve(); 
-
-    int t;
-    cin >> t;
-    while (t--) 
-    {
-        int n;
-        cin >> n;
-        vector<int> ar(n);
-        for(int i = 0; i < 2 * n; i++)
-        {
-            cin >> ar[i];
-        }
-
-        int ans = 0;
-        for(int i = 0; i < n; i++)
-        {
-            ans += max(ar[i], ar[2 * n - 1 - i]);
-        }
-        cout << ans << '\n';
-    }
-
-    return 0;
-}
-
-#include <bits/stdc++.h>
-using namespace std;
-
-/************************************************************
-*                                                          *
-*  "If talent doesn't work, believe in yourself and        *
-*   do hard work. Allah will give you the best gift."      *
-*                                                          *
-*************************************************************/
-
 bool check_kth_bit_on_or_off(int n, int k) {
     return ((n >> k) & 1);
 }
@@ -134,9 +90,14 @@ int main()
     cin >> t;
     while (t--) 
     {
-        
+        int n, m, x;
+        cin >> n >> m >> x;
+
+        int row = (x - 1) / m + 1;
+        int front = row, back = n - row + 1;
+
+        cout << min(back, front) << '\n';
     }
 
     return 0;
 }
-
