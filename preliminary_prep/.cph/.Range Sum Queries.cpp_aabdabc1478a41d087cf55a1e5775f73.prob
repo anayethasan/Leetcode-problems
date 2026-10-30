@@ -1,0 +1,1 @@
+{"name":"Local: Range Sum Queries","url":"e:\\Leetcode\\preliminary_prep\\Range Sum Queries.cpp","tests":[{"id":1793336136153,"input":"5 4\n2 1 3 4 5\n2 2 4\n1 3 10\n2 2 4\n2 1 5","output":"8\n15\n22"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\Leetcode\\preliminary_prep\\Range Sum Queries.cpp","group":"local","local":true}
