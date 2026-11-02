@@ -1,0 +1,1 @@
+{"name":"Local: constract","url":"e:\\Leetcode\\constract.cpp","tests":[{"id":1793341562830,"input":"4\n4 2\n5 0\n3 3\n6 5","output":"2 3 1 4\n1 2 3 4 5\n-1\n2 3 4 5 6 1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\Leetcode\\constract.cpp","group":"local","local":true}
