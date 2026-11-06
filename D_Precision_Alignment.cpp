@@ -8,78 +8,60 @@ using namespace std;
 *                                                          *
 *************************************************************/
 
-bool check_kth_bit_on_or_off(int n, int k) {
-    return ((n >> k) & 1);
-}
-
-int turn_on_kth_bit(int n, int k) {
-    return (n | (1 << k));
-}
-
-int turn_off_kth_bit(int n, int k) {
-    return (n & (~(1 << k)));
-}
-
-int toggle_kth_bit(int n, int k) {
-    return (n ^ (1 << k));
-}
-
-map<int, int> prime_factorization(int n) {
-    map<int, int> cnt;
-    for (int i = 2; i * i <= n; i++) {
-        while (n % i == 0) {
-            cnt[i]++;
-            n /= i;
-        }
-    }
-    if (n > 1) {
-        cnt[n]++;
-    }
-    return cnt;
-}
-
-bool is_prime(int n) {
-    if (n <= 1) return false;
-    for (int i = 2; i * i <= n; i++) {
-        if (n % i == 0) return false;
-    }
-    return true;
-}
-
-const int MAXN = 1e5+5;
-vector<int> allPrime;
-vector<bool> prime(MAXN, true);
-
-void sieve() {
-    prime[0] = prime[1] = false;
-    for (int i = 2; i * i < MAXN; i++) {
-        if (prime[i]) {
-            for (int j = i * i; j < MAXN; j += i) {
-                prime[j] = false;
-            }
-        }
-    }
-
-    for (int i = 2; i < MAXN; i++) {
-        if (prime[i]) allPrime.push_back(i);
-    }
-}
-
-int gcd(int a, int b) {
-    if(a % b == 0)
-        return b;
-    return gcd(b, a % b);    
-}
-
-int lcm(int a, int b) {
-    return (a / gcd(a, b)) * b;
-}
-
 #define ll long long
 #define hea cout << "YES\n";
 #define na cout << "NO\n";
 #define nl cout << '\n';
 
+void solve() 
+{
+    ll n, k;
+    cin >> n >> k;
+
+    vector<tuple<ll, ll, ll>> ar(n);
+    
+    vector<ll> sum(n), del(n);
+    for(int i = 0; i < n; i++)
+    {
+        ll a, b, c;
+        cin >> a >> b >> c;
+
+        ar[i] = {a, b, c};
+        sum[i] = a + b + c;
+
+        if(a > b || a > c || b > c)
+            del[i] = 0;
+        else if(a == b && b == c)
+            del[i] =  k + 1;
+        else 
+            del[i] = min(c - b + 1, b - a + 1);
+    }
+    auto ok = [&](ll x)
+    {
+        ll res = 0;
+        for(int i = 0; i < n; i++)
+        {
+            if(sum[i] < x)
+                res += x - sum[i] + 2 * del[i];
+            
+            if(res > k)
+                return false;
+        }
+        return true;
+    };
+    ll l = -3000000001LL;
+    ll r = 2000000000000000000LL;
+
+    while(l < r)
+    {
+        ll mid = l + (r - l + 1) / 2;
+        if(ok(mid))
+            l = mid;
+        else
+            r = mid - 1;
+    }
+    cout << l << '\n';
+}
 
 int main() 
 {
@@ -91,10 +73,8 @@ int main()
     cin >> t;
     while (t--) 
     {
-        
+        solve();
     }
 
     return 0;
 }
-
-
